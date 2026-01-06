@@ -9,6 +9,16 @@ from jules_agent_sdk.exceptions import (
     JulesValidationError,
     JulesRateLimitError,
 )
+from jules_agent_sdk.orchestrator import (
+    JulesOrchestrator,
+    OrchestratorConfig,
+    TaskConfig,
+    TaskResult,
+    OrchestratorError,
+    TaskFailed,
+    DAGCycleError,
+    ErrorPolicy,
+)
 
 __version__ = "0.1.0"
 __all__ = [
@@ -19,4 +29,12 @@ __all__ = [
     "JulesNotFoundError",
     "JulesValidationError",
     "JulesRateLimitError",
+    "JulesOrchestrator",
+    "OrchestratorConfig",
+    "TaskConfig",
+    "TaskResult",
+    "OrchestratorError",
+    "TaskFailed",
+    "DAGCycleError",
+    "ErrorPolicy",
 ]
