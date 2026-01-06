@@ -9,7 +9,7 @@ from __future__ import annotations
 
 from collections import defaultdict, deque
 from dataclasses import dataclass
-from typing import Any, Awaitable, Callable, Dict, Iterable, List, Optional, Set
+from typing import Any, Awaitable, Callable, Dict, Iterable, List, Optional
 import os
 import time
 
@@ -252,7 +252,6 @@ class JulesOrchestrator:
 
         ctx: Dict[str, Any] = dict(initial_ctx or {})
         results: Dict[str, TaskResult] = {}
-        failed: Set[str] = set()
 
         # State tracking
         ready = deque([tid for tid, deg in indeg.items() if deg == 0])
@@ -281,7 +280,6 @@ class JulesOrchestrator:
 
                 except Exception as e:
                     results[tid] = TaskResult(tid, start_ts, time.time(), False, error=str(e))
-                    failed.add(tid)
                     logger.error("task.error", task_id=tid, error=str(e))
                     if self.cfg.error_policy == ErrorPolicy.FAIL_FAST:
                         raise TaskFailed(tid, e)
