@@ -1,5 +1,6 @@
 from fastapi import FastAPI, HTTPException
 from jules_agent_sdk import AsyncJulesClient
+from typing import Optional
 import os
 
 app = FastAPI()
@@ -11,7 +12,7 @@ async def root():
 @app.get("/agent/start")
 async def start_agent_session(
     prompt: str = "Checking status",
-    source: str = None,
+    source: Optional[str] = None,
     starting_branch: str = "main"
 ):
     """
@@ -49,4 +50,3 @@ async def start_agent_session(
             }
         except Exception as e:
             raise HTTPException(status_code=500, detail=str(e))
-
